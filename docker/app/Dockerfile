@@ -4,16 +4,14 @@
 FROM node:13-alpine as dev-stage
 
 # Create server directory
-WORKDIR /usr/src/server
+WORKDIR /usr/src/app
 
-COPY server/package*.json ./
+COPY app/package*.json ./
 RUN npm install
 
-COPY server/src src/
-COPY server/public public/
-COPY server/views views/
-COPY server/.babelrc ./
+COPY app/src src/
+COPY app/public public/
 
 EXPOSE 8080
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
