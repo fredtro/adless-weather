@@ -14,6 +14,7 @@ const debug = debugLib('adless-weather:server');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+console.log(process.env);
 
 /**
  * Create HTTP server.

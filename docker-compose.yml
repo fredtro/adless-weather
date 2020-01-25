@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  adless-weather-server:
+    image: adless-weather-server
+    container_name: adless-weather-server
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile
+      target: dev-stage
+    networks:
+      - adless-weather
+    volumes:
+      - "./server:/usr/src/server"
+    env_file:
+      - server/.env
+    ports:
+      - '3001:8080'
+networks:
+  adless-weather:
+    external: true
