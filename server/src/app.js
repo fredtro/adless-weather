@@ -5,12 +5,10 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import searchRouter from './routes/search';
 import createError from 'http-errors';
+import swaggerUi from 'swagger-ui-express'
+const swaggerDocument = require('../swagger.json');
 
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,8 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/', indexRouter);
 app.use('/search', searchRouter);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

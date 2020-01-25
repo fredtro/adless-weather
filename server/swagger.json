@@ -1,0 +1,63 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Adless weather service challenge",
+    "version": "0.0.1",
+    "title": "Adless weather service",
+    "contact": {
+      "email": "fredtrostorf@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "tags": [
+    {
+      "name": "Search",
+      "description": "Search weather at location",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/search": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Search for weather in city and/or country",
+        "description": "Get weather data for city and country",
+        "operationId": "getWeatherData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid request value"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

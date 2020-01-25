@@ -11,7 +11,6 @@ RUN npm install
 
 COPY server/src src/
 COPY server/public public/
-COPY server/views views/
 COPY server/.babelrc ./
 
 EXPOSE 8080
