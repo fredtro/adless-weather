@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
         return res.json(weatherData);
     } catch (e) {
         //to make it simple for now
-        return res.status(404).json({ code: '404', message: 'City not found. Please try another query.' });
+        return res.status(400).json(e);
     }
 });
 export default router;
