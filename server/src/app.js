@@ -5,7 +5,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import searchRouter from './routes/search';
 import createError from 'http-errors';
-import swaggerUi from 'swagger-ui-express'
+import swaggerUi from 'swagger-ui-express';
 const swaggerDocument = require('../swagger.json');
 
 const app = express();
