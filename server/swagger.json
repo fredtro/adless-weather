@@ -11,11 +11,11 @@
   "tags": [
     {
       "name": "Search",
-      "description": "Search weather at location",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://swagger.io"
-      }
+      "description": "Search weather at location"
+    },
+    {
+      "name": "Metrics",
+      "description": "Prometheus metrics and health check"
     }
   ],
   "schemes": [
@@ -25,7 +25,7 @@
     "/search": {
       "get": {
         "tags": [
-          "search"
+          "Search"
         ],
         "summary": "Search for weather in city and/or country",
         "description": "Get weather data for city and country",
@@ -57,6 +57,40 @@
           },
           "404": {
             "description": "Invalid request value"
+          }
+        }
+      }
+    },
+    "/prometheus": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Expose metrics for prometheus scraping",
+        "description": "Expose metrics for prometheus scraping",
+        "responses": {
+          "200": {
+            "description": "Prometheus metrics format"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Simple healthcheck",
+        "description": "Simple healthcheck",
+        "responses": {
+          "200": {
+            "description": "healthy",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "unhealthy"
           }
         }
       }
