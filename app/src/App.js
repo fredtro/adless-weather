@@ -1,11 +1,9 @@
-import React          from 'react';
-import CssBaseline    from '@material-ui/core/CssBaseline';
-import Typography     from '@material-ui/core/Typography';
-import Paper          from '@material-ui/core/Paper';
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Header         from './components/header';
-import Searchfield    from './components/searchfield';
-import SearchResult   from "./components/searchresult";
+import Header from './components/header';
+import Search from './components/search';
 
 const useStyles = makeStyles(theme => ({
     layout: {
@@ -16,16 +14,6 @@ const useStyles = makeStyles(theme => ({
             width: 600,
             marginLeft: 'auto',
             marginRight: 'auto',
-        },
-    },
-    paper: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3),
-        padding: theme.spacing(2),
-        [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-            marginTop: theme.spacing(3),
-            marginBottom: theme.spacing(6),
-            padding: theme.spacing(3),
         },
     },
     heading: {
@@ -48,10 +36,7 @@ function App() {
                     Weather Search By City
                 </Typography>
 
-                <Paper className={classes.paper}>
-                    <Searchfield className={classes.heading} />
-                </Paper>
-                <SearchResult />
+                <Search />
             </main>
         </React.Fragment>
     );
