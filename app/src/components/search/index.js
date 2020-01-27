@@ -1,8 +1,9 @@
-import React          from 'react';
-import Paper          from '@material-ui/core/Paper';
+import React, {useEffect, useState} from 'react';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Searchfield    from "./searchfield";
-import SearchResult   from "./searchresult";
+import Searchfield from './searchfield';
+import SearchResult from './searchresult';
+import {search} from "../../api";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -18,6 +19,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Search = () => {
+    const [weatherData, setWeatherData] = useState({});
+
+    useEffect(() => {
+        search({ city: 'Zürich' }).then(data => {
+            console.log(data);
+        });
+
+    });
+
     const classes = useStyles();
     return (
         <div>
