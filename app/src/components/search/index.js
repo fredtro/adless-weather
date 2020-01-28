@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Searchfield from './searchfield';
 import SearchResult from './searchresult';
 import { search } from '../../api';
 import _ from 'lodash';
-import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { createRows } from '../../util';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -21,16 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const rows = [
-    { name: 'City', value: 'Zürich' },
-    { name: 'Country', value: 'CH' },
-    { name: 'Temp', value: '7°C' },
-    { name: 'Temp feels like', value: '5.5°C' },
-    { name: 'Temp min', value: '0.5°C' },
-    { name: 'Temp max', value: '5.5°C' },
-];
-
-const EmptyResponse = (props) => (
+const EmptyResponse = props => (
     <Paper {...props}>
         <Typography variant="body1" gutterBottom>
             Wow, such empty... Use text field to search for current weather.
@@ -39,22 +30,36 @@ const EmptyResponse = (props) => (
 );
 
 const Search = () => {
-    const [weatherData, setWeatherData] = useState({});
-
-    useEffect(() => {
-        search({ city: 'Zürich' }).then(data => {
-            setWeatherData(data);
-        });
-    });
-
     const classes = useStyles();
+    const [weatherData, setWeatherData] = useState([]);
+
+    const handleSubmit = value => {
+        if (_.isEmpty(value.trim())) {
+            setWeatherData([]);
+            return;
+        }
+
+        const splitted = value.split(',', 2);
+        const searchParams =
+            splitted.length > 1
+                ? { city: splitted[0].trim(), country: splitted[1].trim() }
+                : { city: splitted[0].trim() };
+
+        search(searchParams)
+            .then(response => {
+                setWeatherData(createRows(response));
+            })
+            .catch(e => {
+                setWeatherData([{ name: 'Problem', value: 'City not found.' }]);
+            });
+    };
 
     return (
         <div>
             <Paper className={classes.paper}>
-                <Searchfield />
+                <Searchfield handleSubmit={handleSubmit} />
             </Paper>
-            {_.isEmpty(rows) ? <EmptyResponse className={classes.paper} /> : <SearchResult rows={rows} />}
+            {_.isEmpty(weatherData) ? <EmptyResponse className={classes.paper} /> : <SearchResult rows={weatherData} />}
         </div>
     );
 };
