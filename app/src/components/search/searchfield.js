@@ -8,13 +8,11 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const Searchfield = props => {
     const [value, setValue] = useState('');
-
     const { handleSubmit } = props;
 
     const handleChange = e => {
         setValue(e.target.value);
     };
-
     const onKeyUp = e => {
         if (e.key === 'Enter') {
             handleSubmit(value);
