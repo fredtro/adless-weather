@@ -5,15 +5,17 @@ import logger from 'morgan';
 import searchRouter from './routes/search';
 import createError from 'http-errors';
 import swaggerUi from 'swagger-ui-express';
-import promBundle from "express-prom-bundle"
+import promBundle from 'express-prom-bundle';
 import expressHealthCheck from 'express-healthcheck';
+import cors from 'cors';
 
-const metricsMiddleware = promBundle({includeMethod: true, metricsPath: '/prometheus'});
+const metricsMiddleware = promBundle({ includeMethod: true, metricsPath: '/prometheus' });
 const swaggerDocument = require('../swagger.json');
 
 const app = express();
 
 app.use(metricsMiddleware);
+app.use(cors());
 app.use('/health', expressHealthCheck());
 app.use(logger('dev'));
 app.use(express.json());
