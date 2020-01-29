@@ -14,5 +14,3 @@ COPY server/public public/
 COPY server/.babelrc ./
 
 EXPOSE 8080
-
-CMD ["npm", "run", "dev"]

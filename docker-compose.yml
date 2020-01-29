@@ -8,6 +8,7 @@ services:
       context: .
       dockerfile: docker/server/Dockerfile
       target: dev-stage
+    command: ["npm", "run", "dev"]
     networks:
       - adless-weather
     volumes:
@@ -25,6 +26,7 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
       target: dev-stage
+    command: ["npm", "run", "start"]
     networks:
       - adless-weather
     volumes:

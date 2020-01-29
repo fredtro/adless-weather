@@ -13,5 +13,3 @@ COPY app/src src/
 COPY app/public public/
 
 EXPOSE 8080
-
-CMD ["npm", "run", "start"]
