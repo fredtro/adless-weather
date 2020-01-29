@@ -12,6 +12,7 @@ services:
       - adless-weather
     volumes:
       - "./server:/usr/src/server"
+      - "/usr/src/server/node_modules"
     env_file:
       - server/.env
     ports:
@@ -28,6 +29,7 @@ services:
       - adless-weather
     volumes:
       - "./app:/usr/src/app"
+      - "/usr/src/app/node_modules"
     env_file:
       - app/.env
     ports:
