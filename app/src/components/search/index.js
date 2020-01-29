@@ -6,7 +6,7 @@ import SearchResult from './searchresult';
 import { search } from '../../api';
 import _ from 'lodash';
 import Typography from '@material-ui/core/Typography';
-import { createRows } from '../../util';
+import {createRows, mapQueryToSearchParams} from '../../util';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -33,17 +33,13 @@ const Search = () => {
     const classes = useStyles();
     const [weatherData, setWeatherData] = useState([]);
 
-    const handleSubmit = value => {
-        if (_.isEmpty(value.trim())) {
+    const handleSubmit = query => {
+        if (_.isEmpty(query.trim())) {
             setWeatherData([]);
             return;
         }
 
-        const splitted = value.split(',', 2);
-        const searchParams =
-            splitted.length > 1
-                ? { city: splitted[0].trim(), country: splitted[1].trim() }
-                : { city: splitted[0].trim() };
+        const searchParams = mapQueryToSearchParams(query);
 
         search(searchParams)
             .then(response => {
