@@ -1,6 +1,6 @@
 // routes/search.js
 import express from 'express';
-import { getWeatherData } from '../waetherapi';
+import { getWeatherData } from '../api';
 
 const router = express.Router();
 router.get('/', async function(req, res, next) {
