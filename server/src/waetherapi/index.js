@@ -33,7 +33,7 @@ api.interceptors.request.use(config => {
 
 export const getWeatherData = makeGetWeatherData(api, {
     cache: {
-        maxAge: 15 * 60 * 1000, // 15 min
+        maxAge: 2 * 60 * 1000, // 2 min
         exclude: { query: false },
     },
 });
