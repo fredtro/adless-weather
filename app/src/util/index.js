@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * creates data rows from weatherdata
  * @param weatherData
@@ -20,7 +22,9 @@ export const createRows = weatherData => [
 export const mapQueryToSearchParams = query => {
     const queryParts = query.split(',', 2);
 
-    return queryParts.length > 1
+    const searchParams = queryParts.length > 1
         ? { city: queryParts[0].trim(), country: queryParts[1].trim() }
         : { city: queryParts[0].trim() };
+
+    return _.pickBy(searchParams);
 };
