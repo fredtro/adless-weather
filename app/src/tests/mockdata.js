@@ -1,0 +1,15 @@
+export const mockResponse = {
+    coord: { lon: 13.41, lat: 52.52 },
+    weather: [{ id: 500, main: 'Rain', description: 'light rain', icon: '10d' }],
+    base: 'stations',
+    main: { temp: 7.3, feels_like: 3.21, temp_min: 6.11, temp_max: 8.33, pressure: 1006, humidity: 93 },
+    visibility: 10000,
+    wind: { speed: 4.6, deg: 250 },
+    clouds: { all: 75 },
+    dt: 1580722299,
+    sys: { type: 1, id: 1275, country: 'DE', sunrise: 1580712359, sunset: 1580745250 },
+    timezone: 3600,
+    id: 2950159,
+    name: 'Berlin',
+    cod: 200,
+};

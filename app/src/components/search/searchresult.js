@@ -37,7 +37,7 @@ const renderRows = (rows = []) => {
 export default function SearchResult(props) {
     const { rows } = props;
     return (
-        <TableContainer component={Paper}>
+        <TableContainer data-testid="result-table" component={Paper}>
             <Table aria-label="simple table">{_.isEmpty(rows) ? renderEmptyResponse() : renderRows(rows)}</Table>
         </TableContainer>
     );
